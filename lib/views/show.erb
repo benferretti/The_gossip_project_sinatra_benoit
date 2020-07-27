@@ -7,6 +7,20 @@
     <p>Son auteur : <%= gossip.author %></p>
     <p>Le contenu du potin : <%= gossip.content %></p>
     <a href="/">Lien pour revenir à la page des potins</a>
+    <div>
     <a href="/gossips/<%= params['id'] %>/edit">Lien pour modifier ce potin</a>
+    <div>
+    <a href="/gossips/<%= params['id'] %>/comment">Lien pour commenter ce potin</a>
+
+     <h1>Espace commentaires :</h1>
+
+    <% hash_comment.each do |id, comment| %>
+      <% if id == params['id'] %>
+         <p>
+          <%= comment %><br/>
+          </p>
+      <% end %>
+    <% end %>
+
   </body>
 </html>

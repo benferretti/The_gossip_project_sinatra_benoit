@@ -1,0 +1,11 @@
+<html>
+  <head>
+    <title>Commenter le potin n°<%= params['id'] %></title>
+  </head>
+  <body>
+    <form action='/gossips/<%= params['id'] %>/comment/' method='POST'>
+      Balance ton commentaire : <input type='text' name='gossip_comment'/><br/>
+      <input type='submit'/>
+    </form>
+  </body>
+</html>

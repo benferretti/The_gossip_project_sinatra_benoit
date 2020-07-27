@@ -3,10 +3,11 @@ require 'pry'
 class Gossip
 
 	attr_accessor :author, :content
-	
+	@@hash_comment = Hash.new
 	def initialize(author, content)
 	    @author = author
 	    @content = content
+	    
 	end
 
 
@@ -41,6 +42,24 @@ class Gossip
 	      		csv << ["#{i.author}" , "#{i.content}"]
 	      	end
 	    end
+	end
+
+	def self.comment_gossip(id, comment)
+		@@hash_comment.compare_by_identity
+		@@hash_comment[id] = comment
+		CSV.open("db/comments.csv", "ab") do |csv|
+	     		 csv << ["#{id}" , "#{comment}"]
+		end
+		return @@hash_comment
+	end
+
+	def self.all_comments
+		all_comments = Hash.new
+		all_comments.compare_by_identity
+	    CSV.read("db/comments.csv").each do |csv_line|
+	      all_comments[csv_line[0]] = csv_line[1]
+	    end
+	    return all_comments
 	end
 
 end
